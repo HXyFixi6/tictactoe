@@ -1,53 +1,19 @@
-import { useState, useEffect } from 'react';
 import Board from './components/Board';
 import Setup from './components/Setup';
+import { gameState } from './hooks/gameState';
 import './App.css';
 
 function App() {
-  const [playerSymbol, setPlayerSymbol] = useState(null);
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [isHumanTurn, setIsHumanTurn] = useState(true);
-  const botSymbol = playerSymbol === 'X' ? 'O' : 'X';
-
-  const handleSquareClick = (index) => {
-    if (squares[index] !== null || !isHumanTurn) {
-      return;
-    }
-
-    const nextSquares = [...squares];
-    nextSquares[index] = playerSymbol;
-    
-    setSquares(nextSquares);
-    setIsHumanTurn(false);
-  };
-
-  useEffect(() => {
-    if (isHumanTurn || !playerSymbol) return;
-
-    const emptyIndexes = squares
-      .map((square, index) => (square === null ? index : null))
-      .filter((val) => val !== null);
-
-    if (emptyIndexes.length > 0) {
-      const timer = setTimeout(() => {
-        const randomIndex = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
-        
-        const nextSquares = [...squares];
-        nextSquares[randomIndex] = botSymbol;
-        
-        setSquares(nextSquares);
-        setIsHumanTurn(true); 
-      }, 500); 
-
-      return () => clearTimeout(timer);
-    }
-  }, [isHumanTurn, squares, playerSymbol, botSymbol]);
-
-  const handleReset = () => {
-    setSquares(Array(9).fill(null));
-    setPlayerSymbol(null);
-    setIsHumanTurn(true);
-  };
+  const {
+    GRID_SIZE,
+    playerSymbol,
+    setPlayerSymbol,
+    squares,
+    isHumanTurn,
+    winner,
+    playSquare,
+    resetGame
+  } = gameState();
 
   return (
     <div className="game-container">
@@ -57,10 +23,23 @@ function App() {
         <Setup onSelectSymbol={(symbol) => setPlayerSymbol(symbol)} />
       ) : (
         <>
-          <p>Vous jouez avec : <strong>{playerSymbol}</strong></p>
-          <Board squares={squares} onSquareClick={handleSquareClick} />
-          <button className="reset-btn" onClick={handleReset}>
-            Recommencer
+          <div className="game-status">
+            {winner === 'Draw' && <h2>Match nulle</h2>}
+            {winner && winner !== 'Draw' && (
+              <h2>
+                Gagnant : {winner === playerSymbol ? 'Vous' : "L'ordinateur"} ({winner})
+              </h2>
+            )}
+            {!winner && (
+              <p>
+                Vous jouez : <strong>{playerSymbol}</strong> | 
+                Tour : <strong>{isHumanTurn ? "À vous" : "Ordinateur..."}</strong>
+              </p>
+            )}
+          </div>
+          <Board squares={squares} onSquareClick={playSquare} size={GRID_SIZE} />
+          <button className="reset-btn" onClick={resetGame}>
+            Rejouer
           </button>
         </>
       )}
