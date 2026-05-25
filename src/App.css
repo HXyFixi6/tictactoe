@@ -16,3 +16,10 @@
   padding: 10px 20px;
   margin: 0 10px;
 }
+
+.reset-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+}

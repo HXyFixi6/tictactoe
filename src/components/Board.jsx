@@ -1,13 +1,13 @@
 import Square from './Square';
 
-const Board = ({ squares }) => {
+const Board = ({ squares, onSquareClick }) => {
   return (
     <div className="board">
       {squares.map((square, index) => (
         <Square 
           key={index} 
           value={square} 
-          onClick={() => console.log(`Clic sur la case ${index}`)} 
+          onClick={() => onSquareClick(index)}
         />
       ))}
     </div>
