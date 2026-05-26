@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { checkWinner } from '../utils/gameLogic';
+import { GRID_SIZE } from '../config/gameConfig';
 
-export const GRID_SIZE = 3;
 
 export const useGameState = () => {
   const [playerSymbol, setPlayerSymbol] = useState(null);
@@ -62,7 +62,6 @@ export const useGameState = () => {
   };
 
   return {
-    GRID_SIZE,
     playerSymbol,
     setPlayerSymbol,
     squares,
