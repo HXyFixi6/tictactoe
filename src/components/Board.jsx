@@ -1,14 +1,8 @@
 import Square from './Square';
 
-const Board = ({ squares, onSquareClick, size }) => {
+const Board = ({ squares, onSquareClick }) => {
   return (
-    <div 
-      className="board" 
-      style={{
-        gridTemplateColumns: `repeat(${size}, 100px)`,
-        gridTemplateRows: `repeat(${size}, 100px)`
-      }}
-    >
+    <div className="board">
       {squares.map((square, index) => (
         <Square 
           key={index} 

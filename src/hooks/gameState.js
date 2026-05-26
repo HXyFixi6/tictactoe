@@ -3,7 +3,7 @@ import { checkWinner } from '../utils/gameLogic';
 
 export const GRID_SIZE = 3;
 
-export const useGameState = () => {
+export const gameState = () => {
   const [playerSymbol, setPlayerSymbol] = useState(null);
   const [squares, setSquares] = useState(Array(GRID_SIZE * GRID_SIZE).fill(null));
   const [isHumanTurn, setIsHumanTurn] = useState(true);
@@ -62,7 +62,6 @@ export const useGameState = () => {
   };
 
   return {
-    GRID_SIZE,
     playerSymbol,
     setPlayerSymbol,
     squares,
