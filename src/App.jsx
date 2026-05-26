@@ -1,5 +1,5 @@
-import Board from './components/Board/Board';
-import Setup from './components/Setup/Setup';
+import Board from './components/Board';
+import Setup from './components/Setup';
 import { gameState } from './hooks/gameState';
 import './App.css';
 

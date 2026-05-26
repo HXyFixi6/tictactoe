@@ -20,11 +20,6 @@
 .reset-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: red;
+  background-color: #f44336;
   color: white;
-}
-
-.symbol-btn {
-  color: #333;
-  padding: 12px;
 }
