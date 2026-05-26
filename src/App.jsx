@@ -1,6 +1,6 @@
-import Board from './components/Board';
-import Setup from './components/Setup';
-import { gameState } from './hooks/gameState';
+import Board from './components/Board/Board';
+import Setup from './components/Setup/Setup';
+import { useGameState } from './hooks/useGameState';
 import './App.css';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     winner,
     playSquare,
     resetGame
-  } = gameState();
+  } = useGameState();
 
   return (
     <div className="game-container">

@@ -8,8 +8,6 @@
 
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
 }
 
 .setup-buttons button {
@@ -20,6 +18,11 @@
 .reset-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #f44336;
+  background-color: red;
   color: white;
+}
+
+.symbol-btn {
+  color: #333;
+  padding: 12px;
 }
