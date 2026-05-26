@@ -62,6 +62,7 @@ export const gameState = () => {
   };
 
   return {
+    GRID_SIZE,
     playerSymbol,
     setPlayerSymbol,
     squares,
