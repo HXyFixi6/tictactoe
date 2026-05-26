@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Cross = ({ color = '#333' }) => (
+export const Cross = () => (
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
       <line x1="20" y1="20" x2="80" y2="80"
         stroke="currentColor"
@@ -13,7 +13,7 @@ export const Cross = ({ color = '#333' }) => (
     </svg>
 );
 
-export const Circle = ({ color = '#333' }) => (
+export const Circle = () => (
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
       <circle cx="50" cy="50" r="30"
         fill="none"

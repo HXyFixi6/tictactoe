@@ -1,6 +1,8 @@
 import Board from './components/Board/Board';
 import Setup from './components/Setup/Setup';
 import { useGameState } from './hooks/useGameState';
+import { GRID_SIZE } from './config/gameConfig';
+
 import './App.css';
 
 function App() {
