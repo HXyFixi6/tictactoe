@@ -5,14 +5,15 @@ import './App.css';
 
 function App() {
   const {
-    GRID_SIZE,
+    gridSize,
     playerSymbol,
     setPlayerSymbol,
     squares,
     isHumanTurn,
     winner,
     playSquare,
-    resetGame
+    resetGame,
+    startGame
   } = useGameState();
 
   return (
@@ -20,7 +21,7 @@ function App() {
       <h1>Tic Tac Toe</h1>
       
       {!playerSymbol ? (
-        <Setup onSelectSymbol={(symbol) => setPlayerSymbol(symbol)} />
+        <Setup onStartGame={startGame} />
       ) : (
         <>
           <div className="game-status">
@@ -37,7 +38,7 @@ function App() {
               </p>
             )}
           </div>
-          <Board squares={squares} onSquareClick={playSquare} size={GRID_SIZE} />
+          <Board squares={squares} onSquareClick={playSquare} size={gridSize} />
           <button className="reset-btn" onClick={resetGame}>
             Rejouer
           </button>

@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import { checkWinner } from '../utils/gameLogic';
 
-export const GRID_SIZE = 3;
-
 export const useGameState = () => {
+  const [gridSize, setGridSize] = useState(3)
   const [playerSymbol, setPlayerSymbol] = useState(null);
-  const [squares, setSquares] = useState(Array(GRID_SIZE * GRID_SIZE).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null));
   const [isHumanTurn, setIsHumanTurn] = useState(true);
   const [winner, setWinner] = useState(null);
+
   const botSymbol = playerSymbol === 'X' ? 'O' : 'X';
 
   useEffect(() => {
     if (!playerSymbol || winner) return;
 
-    const gameWinner = checkWinner(squares, GRID_SIZE);
+    const gameWinner = checkWinner(squares, gridSize);
     if (gameWinner) {
       setWinner(gameWinner);
       return;
@@ -54,21 +54,29 @@ export const useGameState = () => {
     setIsHumanTurn(false); 
   };
 
+  const startGame = (symbol, size) =>{
+    setGridSize(size);
+    setPlayerSymbol(symbol);
+    setSquares(Array(size * size).fill(null));
+    setIsHumanTurn(true);
+    setWinner(null);
+  }
+
   const resetGame = () => {
-    setSquares(Array(GRID_SIZE * GRID_SIZE).fill(null));
     setPlayerSymbol(null);
     setIsHumanTurn(true);
     setWinner(null);
   };
 
   return {
-    GRID_SIZE,
+    gridSize,
     playerSymbol,
     setPlayerSymbol,
     squares,
     isHumanTurn,
     winner,
     playSquare,
-    resetGame
+    resetGame,
+    startGame
   };
 };
